@@ -1,0 +1,84 @@
+'''
+Created on Feb 19, 2020
+
+@author: akash.adhikary
+'''
+from myPackage.PySql import add_gic, init_fetch_data, add_iic, add_yon, init_database
+'''~~~~~~~~~ required imports~~~~~~~~'''
+from myPackage import PySql 
+from  tkinter import *
+import tkinter
+
+'''~~~~~~~~Global variables~~~~~~~~'''
+cgotEclass=0
+cisEclea=0
+csOrno=0
+top = tkinter.Tk()
+photo=PhotoImage(file= r"C:\Users\akash.adhikary\eclipse-workspace\PetProject\plus1.png")
+'''~~~~~~~~Methods~~~~~~~~'''
+
+def init_global_variables():
+    global cgotEclass
+    global cisEclea
+    global csOrno
+    l1=init_fetch_data()
+    cgotEclass=l1[0]
+    cisEclea=l1[2]
+    csOrno=l1[1]
+
+
+def addgotEclass():
+    global cgotEclass;
+    cgotEclass+=1
+    gotEclassc = Label(top,text=str(add_gic())+"        ",font=("Arial Bold",20))
+    gotEclassc.grid(column=6,row=2)
+    
+    
+def addisEclea():
+    global cisEclea;
+    cisEclea+=1
+    isEcleac = Label(top,text=str(add_iic())+"        ",font=("Arial Bold",20))
+    isEcleac.grid(column=6,row=4)
+    
+def addsOrno():
+    global csOrno;
+    csOrno+=1
+    sOrnoc = Label(top,text=str(add_yon())+"        ",font=("Arial Bold",20))
+    sOrnoc.grid(column=6,row=6)
+    
+def Gui_files_init(): 
+    top.title("Kamini's signature phrase counter")
+    lbl = Label(top,text='Count Phrases',font=("Arial Bold",30),fg="cyan")
+    lbl.grid(column=1,row=0)
+
+    gotEclass = Label(top,text='1. Got e class',font=("Arial Bold",20))
+    gotEclass_btn=Button(top,image=photo,bg="yellow",command=addgotEclass)
+    
+    isEclea = Label(top,text='2. Is e clea    ',font=("Arial Bold",20))
+    isEclea_btn=Button(top,image=photo,bg="green",command=addisEclea)
+    
+    sOrno = Label(top,text='3. S or no      ',font=("Arial Bold",20))
+    sOrno_btn=Button(top,image=photo,bg="red",command=addsOrno)
+    
+    gotEclassc = Label(top,text=str(cgotEclass)+"        ",font=("Arial Bold",20))
+    isEcleac = Label(top,text=str(cisEclea)+"        ",font=("Arial Bold",20))
+    sOrnoc = Label(top,text=str(csOrno)+"        ",font=("Arial Bold",20))
+    
+    gotEclass.grid(column=0,row=2)
+    gotEclass_btn.grid(column=1,row=2)
+    gotEclassc.grid(column=6,row=2)
+    
+    isEclea.grid(column=0,row=4)
+    isEclea_btn.grid(column=1,row=4)
+    isEcleac.grid(column=6,row=4)
+    
+    sOrno.grid(column=0,row=6)
+    sOrno_btn.grid(column=1,row=6)
+    sOrnoc.grid(column=6,row=6)
+    top.mainloop()
+
+init_database();   
+init_global_variables()
+Gui_files_init()
+ 
+
