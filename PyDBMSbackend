@@ -1,0 +1,98 @@
+'''
+Created on Feb 19, 2020
+
+@author: akash.adhikary
+'''
+import cx_Oracle
+con=None
+cursor=None
+
+
+def init_database():
+    global con
+    global cursor
+    con=cx_Oracle.connect('T1083170/T1083170@10.123.79.61:1521/georli06')
+    cursor=con.cursor()
+
+def add_gic():
+    global con
+    global cursor
+    cursor.execute("insert into kamini values(NULL,NULL,systimestamp)")
+    con.commit()
+    cursor.execute("select count(gic) from kamini where gic is not NULL ")
+    ans =cursor.fetchall()
+    ans=int(ans[0][0])
+    return ans
+    
+def add_yon():
+    global con
+    global cursor
+    cursor.execute("insert into kamini values(systimestamp,NULL,NULL)")
+    con.commit()
+    cursor.execute("select count(yon) from kamini where yon is not NULL ")
+    ans =cursor.fetchall()
+    ans=int(ans[0][0])
+    return ans
+    
+def add_iic():
+    global con
+    global cursor
+    cursor.execute("insert into kamini values(NULL,systimestamp,NULL)")
+    con.commit()
+    cursor.execute("select count(iic) from kamini where iic is not NULL ")
+    ans =cursor.fetchall()
+    ans=int(ans[0][0])
+    return ans
+
+def display_table_kamini():
+    global con
+    global cursor
+    cursor.execute("select * from kamini")
+    ans =cursor.fetchall()
+    for i in ans:
+        print(i)
+        
+
+def init_fetch_data():
+    cursor.execute("select count(gic) from kamini where gic is not NULL ")
+    ans =cursor.fetchall()
+    a=int(ans[0][0])
+    
+    cursor.execute("select count(yon) from kamini where yon is not NULL ")
+    ans =cursor.fetchall()
+    b=int(ans[0][0])
+    
+    cursor.execute("select count(iic) from kamini where iic is not NULL ")
+    ans =cursor.fetchall()
+    c=int(ans[0][0])
+    
+    l=[a,b,c]
+    return l
+    
+
+
+init_database()
+
+
+
+
+
+
+
+# cursor.execute("Truncate table kamini")
+
+# init_database()
+# def init_database():
+#     global con
+#     global cursor
+#     con=cx_Oracle.connect('T1083170/T1083170@10.123.79.61:1521/georli06')
+#     cursor=con.cursor()
+    
+    # crsr.execute("create table kamini(yon timestamp, iic timestamp, gic timestamp)")
+    # crsr.execute("insert into kamini values(systimestamp,systimestamp,systimestamp)")
+    # cursor.execute("insert into kamini values(systimestamp,NULL,systimestamp)")
+    # con.commit()
+    # cursor.execute("select to_number(count(yon),999.99) from kamini where gic is not NULL")
+    # ans =cursor.fetchall()
+    # print(int(ans[0][0]))
+
