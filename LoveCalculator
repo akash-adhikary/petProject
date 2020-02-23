@@ -1,0 +1,51 @@
+'''
+Created on Feb 21, 2020
+
+@author: akash.adhikary
+'''
+
+from  tkinter import *
+import tkinter
+
+window = tkinter.Tk()
+btnicon=PhotoImage(file= r"C:\Users\akash.adhikary\eclipse-workspace\PetProject\love_icon.png")
+window.title("<3 calculator")
+
+def lCal():
+    l1=["akashhh","nuzhahh"]
+    n1= n01.get().lower()
+    n2= n02.get().lower()
+    
+    if n1.lower() in l1 and n2.lower() in l1:
+        perc=(100)
+    else:
+        s=0
+        for i in n1:
+            s+=ord(i)
+        for j in n2:
+            s+=ord(j)
+            
+        perc=(s%100)
+         
+    per = Label(window,text=str(perc)+"%",font=("Arial Bold",30),fg="pink")
+    per.grid(column=2,row=3)
+    
+    
+nuzhalbl = Label(window,text='Love Calculator',font=("Edwardian Script ITC",30),fg="red")
+nuzhalbl.grid(column=2,row=0)
+
+
+N1LABEL = Label(window,text='',font=("Arial Bold",30),fg="pink")
+n01 = tkinter.Entry(window)
+n01.grid(column=1,row=1)
+
+
+
+N2LABEL = Label(window,text='Nuzha',font=("Arial Bold",30),fg="pink")
+n02 = tkinter.Entry(window)
+n02.grid(column=3,row=1)
+
+cal_love =Button(window,image=btnicon,command=lCal)
+cal_love.grid(column=2,row=1)
+
+window.mainloop()
